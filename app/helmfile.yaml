@@ -1,0 +1,14 @@
+repositories:
+  - name: metrics-server
+    url: https://kubernetes-sigs.github.io/metrics-server/
+
+releases:
+  - name: metrics-server
+    namespace: kube-system
+    createNamespace: true
+    chart: metrics-server/metrics-server
+    version: ~3.12.0  # Use `helm search repo metrics-server` to find latest
+    values:
+      - args:
+          - --kubelet-insecure-tls=true
+          - --kubelet-preferred-address-types=InternalIP,Hostname,ExternalIP
